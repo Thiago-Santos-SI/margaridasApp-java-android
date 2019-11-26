@@ -11,7 +11,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
 
-    EditText editPreco, editNome, editUnidadeMedida;
+    EditText editPreco, editNome, editUnidadeMedida,editId;
     Button btnLimpar, btnAdicionar, btnDeletar;
     ListView listViewMateriais;
 
@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         editPreco = (EditText)findViewById(R.id.editPreco);
         editNome = (EditText)findViewById(R.id.editNome);
         editUnidadeMedida = (EditText)findViewById(R.id.editUnidadeMedida);
+        editId = (EditText)findViewById(R.id.editId);
 
         btnLimpar = (Button) findViewById(R.id.btnLimpar);
         btnAdicionar = (Button) findViewById(R.id.btnAdicionar);
@@ -33,9 +34,9 @@ public class MainActivity extends AppCompatActivity {
         listViewMateriais = (ListView) findViewById(R.id.listViewMateriais);
 
 
-        //TEXTE//
+        //TESTE//
 
-        db.addMaterial(new Materiais("Pano",2,2));
+        db.addMaterial(new Materiais("Pano",2,2,1));
         Toast.makeText(MainActivity.this, "salvo com sucesso", Toast.LENGTH_LONG).show();
 
     }

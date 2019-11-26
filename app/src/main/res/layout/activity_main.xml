@@ -28,13 +28,27 @@
         android:inputType="textPersonName" />
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/editUnidadeMedida"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="unidade de medida"
-        android:inputType="number" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editUnidadeMedida"
+            android:layout_width="188dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="unidade de medida"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/editId"
+            android:layout_width="226dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Codigo"
+            android:inputType="number" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

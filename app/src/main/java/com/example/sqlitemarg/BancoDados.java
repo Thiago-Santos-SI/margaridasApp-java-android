@@ -29,7 +29,7 @@ public class BancoDados extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String QUERY_COLUNA = "CREATE_TABLE " + TABELA_MATERIAIS + "("
+        String QUERY_COLUNA = "CREATE TABLE " + TABELA_MATERIAIS + "("
                 + COLUNA_ID + " INTEGER PRIMARY KEY, " + COLUNA_NOME + " TEXT, "
                 + COLUNA_PRECO + " INTEGER, " + COLUNA_UNIDADE + " INTEGER) " ;
 
@@ -49,6 +49,7 @@ public class BancoDados extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
 
+        values.put(COLUNA_ID, materiais.getId());
         values.put(COLUNA_NOME, materiais.getNome());
         values.put(COLUNA_PRECO, materiais.getPreco());
         values.put(COLUNA_UNIDADE, materiais.getUnidade_medida());
