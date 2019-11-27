@@ -7,17 +7,21 @@ public class Materiais {
     float unidade_medida;
     float preco;
 
-    public Materiais(String nome, float unidade_medida, float preco, int id) {
+    public Materiais(int id, String nome, float unidade_medida, float preco) {
+        this.id = id;
         this.nome = nome;
         this.unidade_medida = unidade_medida;
         this.preco = preco;
-        this.id = id;
     }
 
     public Materiais(String nome, float unidade_medida, float preco) {
         this.nome = nome;
         this.unidade_medida = unidade_medida;
         this.preco = preco;
+    }
+
+    public Materiais() {
+
     }
 
     public String getNome() {
