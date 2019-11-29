@@ -2,9 +2,11 @@ package com.example.sqlitemarg;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Service;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -27,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter;
     ArrayList<String> arrayList;
 
+    InputMethodManager imm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         btnAdicionar = (Button) findViewById(R.id.btnAdicionar);
         btnDeletar = (Button) findViewById(R.id.btnDeletar);
 
+        imm = (InputMethodManager) this.getSystemService(Service.INPUT_METHOD_SERVICE);
+
         listViewMateriais = (ListView) findViewById(R.id.listViewMateriais);
         listarMateriais();
 
@@ -51,34 +57,93 @@ public class MainActivity extends AppCompatActivity {
                 String conteudo = (String) listViewMateriais.getItemAtPosition(i);
                 //Toast.makeText(MainActivity.this, "Select: " + conteudo, Toast.LENGTH_LONG).show();
                 String id = conteudo.substring(0, conteudo.indexOf("-"));
+                id = id.trim();
                 Materiais materiais = db.selecionarMaterial(Integer.parseInt(id));
 
-                editId.setText(materiais.getId());
+                //LEMBRAR SEMPRE DE CONVERTER
+                editId.setText(String.valueOf(materiais.getId()));
                 editNome.setText(materiais.getNome());
-
-                //ERRORS
                 editUnidadeMedida.setText(String.valueOf(materiais.getUnidade_medida()));
                 editPreco.setText(String.valueOf(materiais.getPreco()));
+            }
+        });
 
+        btnLimpar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                limparCampos();
+            }
+        });
 
+        btnAdicionar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                String id = editId.getText().toString();
+                //? editId.setText(String.valueOf(id));
+                String nome = editNome.getText().toString();
+                String unidade = editUnidadeMedida.getText().toString();
+                String preco = editPreco.getText().toString();
+
+                if(nome.isEmpty()){
+                    editNome.setError("campo obrigatorio!");
+                } else if(id.isEmpty()){
+                    db.addMaterial(new Materiais(nome, Float.parseFloat(unidade), Float.parseFloat(preco)));
+
+                    Toast.makeText(MainActivity.this, "adicionado com sucesso", Toast.LENGTH_LONG).show();
+
+                    limparCampos();
+                    listarMateriais();
+                } else {
+                    db.atualizarMaterial(new Materiais(Integer.parseInt(id), nome, Float.parseFloat(unidade), Float.parseFloat(preco)));
+
+                    Toast.makeText(MainActivity.this, "Material atualizado com sucesso", Toast.LENGTH_LONG).show();
+
+                    limparCampos();
+                    listarMateriais();
+                    esconderTeclado();
+                }
+            }
+        });
+
+        btnDeletar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String id = editId.getText().toString();
+
+                if (id.isEmpty()){
+                    Toast.makeText(MainActivity.this, "Nenhum material esta selecionado", Toast.LENGTH_LONG).show();
+                } else {
+                    Materiais materiais = new Materiais();
+                    materiais.setId(Integer.parseInt(id));
+                    db.DeleteMaterial(materiais);
+
+                    Toast.makeText(MainActivity.this, "Material deletado com sucesso", Toast.LENGTH_LONG).show();
+
+                    limparCampos();
+                    listarMateriais();
+                    esconderTeclado();
+
+                }
 
             }
         });
 
+        //------------------------------------------------------------------------------------------
 
         //INSERT - teste
         /*
-        db.addMaterial(new Materiais(1,"pano",2,1));
+        db.addMaterial(new Materiais("tijolo",2,1));
         Toast.makeText(MainActivity.this, "salvo com sucesso", Toast.LENGTH_LONG).show();
 
-        db.addMaterial(new Materiais(2,"linha",2,3));
+        db.addMaterial(new Materiais("linha",2,3));
         Toast.makeText(MainActivity.this, "salvo com sucesso", Toast.LENGTH_LONG).show();
 
-        db.addMaterial(new Materiais(3,"tecido",2,2));
+        db.addMaterial(new Materiais("tecido",2,2));
         Toast.makeText(MainActivity.this, "salvo com sucesso", Toast.LENGTH_LONG).show();
 
-        db.addMaterial(new Materiais(4,"tecido de sla oq",2,1));
+        db.addMaterial(new Materiais("tostelino",2,1));
         Toast.makeText(MainActivity.this, "salvo com sucesso", Toast.LENGTH_LONG).show();
         */
 
@@ -112,6 +177,18 @@ public class MainActivity extends AppCompatActivity {
          */
     } //MINUTO 8:31
 
+    void esconderTeclado(){
+        imm.hideSoftInputFromWindow(editNome.getWindowToken(), 0);
+    }
+
+    void limparCampos(){
+        editId.setText("");
+        editNome.setText("");
+        editUnidadeMedida.setText("");
+        editPreco.setText("");
+
+        editNome.requestFocus();
+    }
 
     public void listarMateriais(){
 
@@ -124,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
 
         for(Materiais m : materiais){
             // teste de listar todos ->   Log.d("Lista", "\nID: " + m.getId() + " Nome: " + m.getNome());
-            arrayList.add(m.getId() + " - " + m.getNome() +" "+ "Preço: " + m.getPreco() + " Unidade: " + m.getUnidade_medida());
+            arrayList.add(m.getId() + " - " + m.getNome()+ " | " +" "+ "Preço: " + m.getPreco() + " | " + " Unidade: " + m.getUnidade_medida());
             adapter.notifyDataSetChanged();
 
         }

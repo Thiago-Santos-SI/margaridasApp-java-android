@@ -7,17 +7,27 @@ public class Materiais {
     float unidade_medida;
     float preco;
 
-    public Materiais(int id, String nome, float unidade_medida, float preco) {
-        this.id = id;
-        this.nome = nome;
-        this.unidade_medida = unidade_medida;
-        this.preco = preco;
+    public Materiais(int _id, String _nome, float _unidade_medida, float _preco) {
+        this.id = _id;
+        this.nome = _nome;
+        this.unidade_medida = _unidade_medida;
+        this.preco = _preco;
     }
 
-    public Materiais(String nome, float unidade_medida, float preco) {
-        this.nome = nome;
-        this.unidade_medida = unidade_medida;
-        this.preco = preco;
+    public Materiais(String _nome, float _unidade_medida, float _preco) {
+        this.nome = _nome;
+        this.unidade_medida = _unidade_medida;
+        this.preco = _preco;
+    }
+
+    @Override
+    public String toString() {
+        return "Materiais{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", unidade_medida=" + unidade_medida +
+                ", preco=" + preco +
+                '}';
     }
 
     public Materiais() {
