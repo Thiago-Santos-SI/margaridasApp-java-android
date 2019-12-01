@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SqliteMarg</string>
+    <string name="nome">Nome</string>
+    <string name="pre_o">Preço</string>
+</resources>

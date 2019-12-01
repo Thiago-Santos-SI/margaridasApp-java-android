@@ -1,0 +1,4 @@
+#Sun Dec 01 13:51:35 GFT 2019
+base.0=C\:\\Users\\thiia\\Desktop\\CRUD_SQLITE_MARGARIDAS-master\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
