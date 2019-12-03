@@ -3,25 +3,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
+
 
         <Button
             android:id="@+id/btnVoltar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="voltar" />
+            android:text="voltar"
+            android:background="#45B39D "
+            />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        >
+
+        <TextView
+            android:id="@+id/txtCT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Custo total"
+            android:layout_marginLeft="20sp"
+            android:textSize="20sp"
+            android:textColor="#000"/>
+
+        <TextView
+            android:id="@+id/txtPV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="preço de venda"
+            android:layout_marginLeft="65sp"
+            android:textSize="20sp"
+            android:textColor="#000"/>
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
+
 
         <EditText
             android:id="@+id/txtCustoTotal"
@@ -29,10 +65,11 @@
             android:layout_height="wrap_content"
             android:autofillHints=""
             android:ems="10"
-            android:hint="custo total"
+            android:hint=" "
             android:enabled="false"
             android:inputType="numberDecimal"
-            android:textSize="30sp" />
+            android:textSize="25sp"
+            android:textColor="#2b2727"/>
 
         <EditText
             android:id="@+id/txtPreçoVenda"
@@ -41,11 +78,21 @@
             android:autofillHints=""
             android:ems="10"
             android:enabled="false"
-            android:hint="preço de venda"
+            android:hint=" "
             android:inputType="numberDecimal"
-            android:textSize="30sp" />
+            android:textSize="25sp"
+            android:textColor="#2b2727"/>
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sua lista de itens"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:background="#45B39D "/>
 
 
 
@@ -53,6 +100,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+
 
         <ListView
             android:id="@+id/spinner2"

@@ -61,33 +61,43 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Limpar" />
+            android:text="Limpar"
+            android:background="#45B39D "
+            />
 
         <Button
             android:id="@+id/btnAdicionar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Adicionar" />
+            android:text="Adicionar"
+            android:background="#45B39D "/>
 
         <Button
             android:id="@+id/btnDeletar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Apagar" />
+            android:text="Apagar"
+            android:background="#45B39D "/>
 
         <Button
             android:id="@+id/btnTelaCalculo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#45B39D "
             android:text="Calcular" />
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/listViewMateriais"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ListView
+            android:id="@+id/listViewMateriais"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+        </ListView>
+    </LinearLayout>
 </LinearLayout>
