@@ -1,0 +1,4 @@
+#Sat Nov 30 18:54:34 GFT 2019
+base.0=C\:\\Users\\thiia\\AndroidStudioProjects\\CRUD_SQLITE_MARGARIDAS\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

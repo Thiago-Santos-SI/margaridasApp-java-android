@@ -1,8 +1,10 @@
 package com.example.sqlitemarg;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Service;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     EditText editPreco, editNome, editUnidadeMedida, editId;
-    Button btnLimpar, btnAdicionar, btnDeletar;
+    Button btnLimpar, btnAdicionar, btnDeletar, btnTelaCalculo, btnVoltar;
     ListView listViewMateriais;
 
     BancoDados db = new BancoDados(this);
@@ -31,10 +33,26 @@ public class MainActivity extends AppCompatActivity {
 
     InputMethodManager imm;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        btnTelaCalculo = (Button) findViewById(R.id.btnTelaCalculo);
+        btnTelaCalculo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), telaCalculoActivity.class);
+                startActivity(i);
+            }
+        });
+
+
+
+
+
 
         editPreco = (EditText) findViewById(R.id.editPreco);
         editNome = (EditText) findViewById(R.id.editNome);
@@ -175,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(MainActivity.this, "Atualizado com sucesso", Toast.LENGTH_LONG).show();
 
          */
-    } //MINUTO 8:31
+    }
 
     void esconderTeclado(){
         imm.hideSoftInputFromWindow(editNome.getWindowToken(), 0);
@@ -201,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
 
         for(Materiais m : materiais){
             // teste de listar todos ->   Log.d("Lista", "\nID: " + m.getId() + " Nome: " + m.getNome());
-            arrayList.add(m.getId() + " - " + m.getNome()+ " | " +" "+ "Preço: " + m.getPreco() + " | " + " Unidade: " + m.getUnidade_medida());
+            arrayList.add(m.getId() + " - " + "Nome: " + m.getNome()+ " | " +" "+ "Preço: " + m.getUnidade_medida() + " | " + " Unidade: " + m.getPreco());
             adapter.notifyDataSetChanged();
 
         }
